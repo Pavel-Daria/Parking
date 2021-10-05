@@ -1,0 +1,52 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace parking
+{
+    class Parking_place
+    {
+        List<Car> cars;
+        int parkingnumber = 0;
+        public void Add(Car car)
+        {
+            if (cars == null)
+            {
+                cars = new List<Car>();
+            }
+            cars.Add(car);
+        }
+
+        public void Remove(Car car)
+        {
+            if (cars == null)
+            {
+                Console.WriteLine("Машины нет!");
+            }
+            cars.Remove(car);
+        }
+
+        public int ParkingNumber
+        {
+            get { return parkingnumber; }
+            set
+            {
+                if (value > 0 && value < 110)
+                {
+                    parkingnumber = value;
+                }
+            }
+        }
+
+        public void ShowInfoo()
+        {
+            foreach (Car car in cars)
+            {
+                car.ShowCar();
+            }
+        }
+
+    }
+}
