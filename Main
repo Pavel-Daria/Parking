@@ -1,0 +1,93 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace parking
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            List<Parking_place> parking = new List<Parking_place>();
+            int counter;
+            int placeParking = 1;
+            do
+            {
+                Console.WriteLine();
+                Console.WriteLine("1. Добавить автомобиль на парковку.");
+                Console.WriteLine("2. Добавить информацию об автомобиле.");
+                Console.WriteLine("3. Вывести информацию об автомобиле.");
+                Console.WriteLine("4. Выезд автомобиля со стоянки");
+                Console.WriteLine("5. Выход.");
+                Console.WriteLine();
+                counter = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine();
+
+
+                switch (counter)
+                {
+                    case 1:
+                        Parking_place p1 = new Parking_place();
+                        p1.ParkingNumber = placeParking;
+                        Console.WriteLine("Номер парковочного места: " + placeParking);
+                        parking.Add(p1);
+                        placeParking++;
+                        break;
+                    case 2:
+                        Car auto = new Car();
+                        Console.Write("Введите номер парковочного места: ");
+                        int number = int.Parse(Console.ReadLine());
+                        foreach (var i in parking)
+                        {
+                            if (i.ParkingNumber == number)
+                            {
+                                Console.Write("Введите марку машины: ");
+                                auto.Brande = Console.ReadLine();
+                                Console.Write("Введите модель машины: ");
+                                auto.Model = Console.ReadLine();
+                                Console.Write("Введите цвет машины: ");
+                                auto.Color = Console.ReadLine();
+                                Console.Write("Введите номер машины: ");
+                                auto.Number = Console.ReadLine();
+                                Console.Write("Введите время заезда машины: ");
+                                auto.ArrivalTime = Console.ReadLine();
+                                i.Add(auto);
+                            }
+                        }
+                        break;
+                    case 3:
+                        Console.Write("Введите номер парковочного места: ");
+                        int x = int.Parse(Console.ReadLine());
+                        foreach (var i in parking)
+                        {
+                            if (i.ParkingNumber == x)
+                            {
+                                Console.WriteLine("Информация о автомобиле:");
+                                i.ShowInfoo();
+                                Console.WriteLine();
+                            }
+
+                        }
+                        break;
+                    case 4:
+                        Console.Write("Введите номер парковочного места: ");
+                        int y = int.Parse(Console.ReadLine());
+                        Console.WriteLine();
+                        for (int i = 0; i < parking.Count; i++)
+                        {
+                            if (parking[i].ParkingNumber == y)
+                            {
+                                parking.RemoveAt(i);
+                                break;
+                            }
+                        }
+                        Console.WriteLine("Машина выехала с парковочного места");
+                        break;
+
+                }
+                
+            } while (counter != 5);
+        }
+    }
+}
